@@ -10,6 +10,9 @@
 #
 # ----------------------------------------------------------------------------
 language: python
+arch:
+ # - amd64
+  - ppc64le
 sudo: required
 services:
   - docker
@@ -34,7 +37,9 @@ matrix:
       env: TOXENV=py38
       sudo: true
       arch: ppc64le
-
+before_install:
+    - sudo apt-get update
+    - sudo apt-get install bsh
 install:
   - pip install -r requirements-dev.txt
   - travis_retry pip install tox
