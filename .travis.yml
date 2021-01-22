@@ -10,9 +10,6 @@
 #
 # ----------------------------------------------------------------------------
 language: python
-sudo: required
-services:
-  - docker
 matrix:
   include:
     - python: 3.6
@@ -34,13 +31,8 @@ matrix:
       env: TOXENV=py38
       sudo: true
       arch: ppc64le
-before_install:
-    - sudo apt-get update
-    - sudo apt-get install bsh
 install:
   - pip install -r requirements-dev.txt
   - travis_retry pip install tox
-
 script:
-  - bsh -x docker.sh
   - travis_retry tox
